@@ -12,6 +12,7 @@
     "ejs": "^3.1.5",
     "express": "^4.17.1",
     "socket.io": "^2.3.0",
+    "socketio-file-upload": "^0.7.2",
     "uuid": "^8.3.0"
   }
 }
