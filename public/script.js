@@ -1,26 +1,38 @@
 let socket = io("/")
 let users = document.getElementById("users-list")
-var peer = new Peer()
-peer.on("open", (userId) => {
-  populateUsersList(userId, " (You)")
-  socket.emit("join", roomId, userId)
+socket.emit("join", roomId)
+socket.on("fetch-users", (clients, id) => {
+  if (id === socket.id) {
+    clients
+      .slice()
+      .reverse()
+      .forEach((client) => {
+        if (socket.id === client) {
+          addUserToList(client, true)
+        } else {
+          addUserToList(client)
+        }
+      })
+  }
 })
-socket.on("user-connected", (userId) => {
-  populateUsersList(userId)
+socket.on("user-connected", (id) => {
+  addUserToList(id)
 })
-socket.on("user-disconnected", (userId) => {
-  if (peers[userId]) peers[userId].close()
-})
+socket.on("user-disconnected", (userId) => {})
 
-function populateUsersList(userId, tag) {
+function addUserToList(userId, self) {
   let li = document.createElement("li")
   li.appendChild(document.createTextNode(userId))
-  if (tag) {
+  if (self) {
     let span = document.createElement("span")
     let strong = document.createElement("strong")
-    strong.appendChild(document.createTextNode(tag))
+    strong.appendChild(document.createTextNode(" (You)"))
     span.appendChild(strong)
     li.appendChild(span)
   }
   users.appendChild(li)
+}
+
+function removeUserFromList(userId) {
+  console.log(users)
 }
