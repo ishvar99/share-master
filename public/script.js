@@ -18,7 +18,9 @@ socket.on("fetch-users", (clients, id) => {
 socket.on("user-connected", (id) => {
   addUserToList(id)
 })
-socket.on("user-disconnected", (userId) => {})
+socket.on("user-disconnected", (id) => {
+  removeUserFromList(id)
+})
 
 function addUserToList(userId, self) {
   let li = document.createElement("li")
@@ -33,6 +35,11 @@ function addUserToList(userId, self) {
   users.appendChild(li)
 }
 
-function removeUserFromList(userId) {
-  console.log(users)
+function removeUserFromList(id) {
+  let userIds = users.getElementsByTagName("li")
+  for (let userId of userIds) {
+    if (userId.textContent === id) {
+      users.removeChild(userId)
+    }
+  }
 }
