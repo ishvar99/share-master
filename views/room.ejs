@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>File Share</title>
+    <script defer src="/socket.io/socket.io.js"></script>
+    <script
+      defer
+      src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"
+    ></script>
+    <script>
+      var roomId = "<%=roomId%>"
+    </script>
+  </head>
+  <body>
+    <p>Copy provided address and send it to the other person...</p>
+    <p>http://localhost:3000/<%=roomId%></p>
+    <div id="users-list">
+      <h3>Users</h3>
+    </div>
+  </body>
+  <script defer src="script.js"></script>
+</html>
