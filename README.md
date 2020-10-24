@@ -1,6 +1,6 @@
 # SHARE-MASTER
 
-Peer to peer file sharing application using socket.io
+File sharing application using socket.io
 
 Watch the demo
 
